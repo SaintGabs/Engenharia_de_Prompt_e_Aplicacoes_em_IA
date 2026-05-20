@@ -72,5 +72,7 @@ Professor(a): Kadidja Valéria
 ## 🚀 Próximos Passos
 
 - Melhorias sugeridas para o protótipo.
+- poder enviar uma mensagem avisando que esta no horario do medicamento
 
 - Possíveis evoluções para o Projeto Final da Unidade 3.
+- mandar mensagem pelo whatsapp
