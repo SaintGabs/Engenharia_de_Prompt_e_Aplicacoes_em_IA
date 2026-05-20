@@ -14,9 +14,9 @@ Alerta de medicamentos através de um sistema que calcula o horario para as prox
 
 ## ⚙️ Plataforma Utilizada
 
-- Nome da plataforma Copilot e Gemini
+- Nome da plataforma Google AI Studio e Gemini
 
-- Justificativa da escolha: Uso do Copilot foi o melhor para implementação e desenvolvimento; O Gemini para validação de requisitos e refinamento de prompts, pois foi o mais habitual
+- Justificativa da escolha: Uso do Google Ai Studio foi o melhor para implementação e desenvolvimento; O Gemini para validação de requisitos e refinamento de prompts, pois foi o mais habitual
 
 ---
 
