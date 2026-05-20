@@ -38,7 +38,7 @@ Liste pelo menos **3 limitações** percebidas:
 
 1. Nescessidade de objetividade e explicação de forma bem clara, para nao haver interpretaçoes por parte da IA
 2. Alteraraçoes pequenas precisa reestruturar todo o codigo
-3. 
+3. Alucinação da IA na criação de prompt
 ---
 
 ## 📚 Reflexão Crítica
