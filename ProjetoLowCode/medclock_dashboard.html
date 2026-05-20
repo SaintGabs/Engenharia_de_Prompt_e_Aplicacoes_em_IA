@@ -157,7 +157,6 @@
             transition: border-color 0.3s;
         }
 
-        /* Estado de Atraso via JS */
         .card.atrasado {
             border-left: 5px solid var(--danger);
         }
@@ -264,7 +263,6 @@
         .footer p { font-size: 0.85rem; color: #cbd5e0; }
         .member-list { list-style: none; }
         .member-list li { font-size: 0.85rem; margin-bottom: 4px; color: #cbd5e0; }
-        .member-list strong { color: white; }
 
         @media (max-width: 600px) {
             .header, .footer { flex-direction: column; text-align: center; }
@@ -311,12 +309,12 @@
             <div class="badge">UDF • Engenharia & TI</div>
         </header>
 
-        <!-- GRID ONDE OS CARDS VÃO ENTRAR -->
+        <!-- GRID DE CARDS -->
         <main class="dashboard-grid" id="dashboard-container">
-            <!-- Os cards injetados via JavaScript aparecerão aqui -->
+            <!-- Gerado via JS dinamicamente -->
         </main>
 
-        <!-- FOOTER INTEGRADO -->
+        <!-- FOOTER INTEGRADO E ATUALIZADO -->
         <footer class="footer">
             <div class="footer-col">
                 <div class="footer-title">🏫 Contexto Acadêmico</div>
@@ -324,11 +322,11 @@
                 <p>Orientação e Coordenação: <strong>Profª. Kadidja</strong>.</p>
             </div>
             <div class="footer-col" style="text-align: right;">
-                <div class="footer-title">👥 Equipe de Colaboradores</div>
+                <div class="footer-title">👥 Integrantes</div>
                 <ul class="member-list">
-                    <li><strong>Gabriel dos Santos</strong> — Regras de Negócio e Lógica</li>
-                    <li><strong>Daniel Santos</strong> — Arquitetura do Script</li>
-                    <li><strong>Matheus Teixeira</strong> — Interface UI/UX e Responsividade</li>
+                    <li>• Gabriel dos Santos</li>
+                    <li>• Daniel Santos</li>
+                    <li>• Matheus Teixeira</li>
                 </ul>
             </div>
         </footer>
@@ -337,21 +335,18 @@
 
     <!-- MOTOR JAVASCRIPT LOGIC -->
     <script>
-        // Array global para armazenar os remédios em memória
         let listaMedicamentos = [];
 
-        // Define o input de data padrão do formulário para a hora atual do seu sistema
         window.addEventListener('DOMContentLoaded', () => {
             const agora = new Date();
             agora.setMinutes(agora.getMinutes() - agora.getTimezoneOffset());
             document.getElementById('med-ultima').value = agora.toISOString().slice(0,16);
             
-            // Adiciona alguns exemplos iniciais para a dashboard não iniciar vazia
-            adicionarMedicamento("Amoxicilina 500mg", "1 Cápsula", 8, new Date(Date.now() - 6 * 60 * 60 * 1000)); // Tomado há 6 horas (falta 2h)
-            adicionarMedicamento("Dipirona Gotas", "20 Gotas", 6, new Date(Date.now() - 7 * 60 * 60 * 1000)); // Tomado há 7 horas (Atrasado!)
+            // Dados de demonstração iniciais
+            adicionarMedicamento("Amoxicilina 500mg", "1 Cápsula", 8, new Date(Date.now() - 6 * 60 * 60 * 1000));
+            adicionarMedicamento("Dipirona Gotas", "20 Gotas", 6, new Date(Date.now() - 7 * 60 * 60 * 1000));
         });
 
-        // Evento do botão Adicionar
         document.getElementById('btn-adicionar').addEventListener('click', () => {
             const nome = document.getElementById('med-nome').value.trim();
             const dose = document.getElementById('med-dose').value.trim();
@@ -364,8 +359,6 @@
             }
 
             adicionarMedicamento(nome, dose, intervalo, new Date(ultimaDoseValor));
-            
-            // Limpa o campo de texto do nome e dose após adicionar
             document.getElementById('med-nome').value = "";
             document.getElementById('med-dose').value = "";
         });
@@ -375,10 +368,9 @@
                 id: Date.now() + Math.random(),
                 nome: nome,
                 dose: dose,
-                intervalo: intervalo, // em horas
+                intervalo: intervalo,
                 ultimaDose: dataUltimaDose
             };
-
             listaMedicamentos.push(med);
             renderizarDashboard();
         }
@@ -391,7 +383,7 @@
         function tomarDose(id) {
             const med = listaMedicamentos.find(m => m.id === id);
             if (med) {
-                med.ultimaDose = new Date(); // Atualiza para o exato momento atual
+                med.ultimaDose = new Date();
                 renderizarDashboard();
             }
         }
@@ -410,15 +402,12 @@
             }
 
             listaMedicamentos.forEach(med => {
-                // Cálculo automático: Próxima dose = Última Dose + Intervalo em Milissegundos
                 const proximaDoseTime = med.ultimaDose.getTime() + (med.intervalo * 60 * 60 * 1000);
                 const dataProximaDose = new Date(proximaDoseTime);
 
-                // Elemento HTML estruturado do Card
                 const card = document.createElement('article');
                 card.className = 'card';
                 card.setAttribute('data-id', med.id);
-                card.setAttribute('data-target', proximaDoseTime);
 
                 card.innerHTML = `
                     <div class="card-header">
@@ -436,7 +425,7 @@
                     </div>
                     <div class="info-row">
                         <span class="info-label">🔔 Próxima dose:</span>
-                        <span class="info-value prox-dose-texto" style="color: var(--primary-light);">${formatarData(dataProximaDose)}</span>
+                        <span class="info-value" style="color: var(--primary-light);">${formatarData(dataProximaDose)}</span>
                     </div>
                     
                     <div class="timer-box" id="tbox-${med.id}">
@@ -449,16 +438,12 @@
                         <button class="btn btn-remove" onclick="removerMedicamento(${med.id})">🗑️ Remover</button>
                     </div>
                 `;
-
                 container.appendChild(card);
             });
-
-            // Força a atualização imediata dos cronômetros recém criados
             atualizarCronometros();
         }
 
-        // Loop de atualização contínua (Roda a cada 1 segundo)
-        function atualizarCronometros() {
+        function actualizarCronometros() {
             const agora = new Date().getTime();
             
             listaMedicamentos.forEach(med => {
@@ -473,7 +458,6 @@
                 if (!tBox || !tCount) return;
 
                 if (diferenca <= 0) {
-                    // MEDICAMENTO ATRASADO: Altera o layout dinamicamente
                     tCount.innerText = "00:00:00";
                     tLabel.innerText = "⚠️ ALERTA: TOMAR MEDICAMENTO!";
                     tBox.style.backgroundColor = "#fff5f5";
@@ -482,19 +466,11 @@
                     tLabel.style.color = "#9b2c2c";
                     if (cardElement) cardElement.classList.add('atrasado');
                 } else {
-                    // CONTAGEM REGRESSIVA ATIVA: Realiza as contas matemáticas de tempo
                     const horas = Math.floor(diferenca / (1000 * 60 * 60));
                     const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
                     const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
-                    // Formatação com zero à esquerda (ex: 02:05:09)
-                    const hDisplay = horas.toString().padStart(2, '0');
-                    const mDisplay = minutos.toString().padStart(2, '0');
-                    const sDisplay = segundos.toString().padStart(2, '0');
-
-                    tCount.innerText = `${hDisplay}:${mDisplay}:${sDisplay}`;
-                    
-                    // Restaura padrão neutro/estável caso estivesse vermelho antes
+                    tCount.innerText = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
                     tLabel.innerText = "Tempo restante para a dose";
                     tBox.style.backgroundColor = "var(--warning-bg)";
                     tBox.style.borderColor = "var(--warning-border)";
@@ -505,7 +481,6 @@
             });
         }
 
-        // Executa o clock do temporizador a cada 1000ms (1 segundo)
         setInterval(atualizarCronometros, 1000);
     </script>
 </body>
