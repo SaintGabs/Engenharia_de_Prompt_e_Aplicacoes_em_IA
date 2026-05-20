@@ -51,9 +51,9 @@ Utilizamos duas IAs uma para a criação o prompt para a outra desenvolver o có
 
 ## 👥 Colaboração
 
-Gabriel Paz, Desenvolvimento do Readme: https://github.com/SaintGabs
-Matheus Teixera, Contrução do Site: https://github.com/matheusgg18
-Daniel Santos, Protipagem do sistema: https://github.com/vismoke777
+1. Gabriel Paz, Desenvolvimento do Readme: https://github.com/SaintGabs
+2. Matheus Teixera, Contrução do Site: https://github.com/matheusgg18
+3. Daniel Santos, Protipagem do sistema: https://github.com/vismoke777
 
 ---
 
