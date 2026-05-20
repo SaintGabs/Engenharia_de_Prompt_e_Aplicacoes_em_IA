@@ -8,7 +8,7 @@ Alerta de medicamentos através de um sistema que calcula o horario para as prox
 
 ## 🖥️ Protótipo
 
-- Prints das telas ou link para a aplicação criada.
+O MedClock é um aplicativo web responsivo desenvolvido em HTML, CSS e JavaScript para a disciplina da Profª. Kadidja no Centro Universitário UDF. O sistema gerencia medicamentos cadastrados por meio de uma interface baseada em cartões interativos (cards), automatizando o cálculo exato dos próximos horários de ingestão com base no intervalo e no horário da última dose. Cada cartão conta com um cronômetro regressivo individual atualizado em tempo real e um sistema de alertas visuais que muda a cor do painel para sinalizar atrasos. Pelos botões de ação funcionais, o usuário pode clicar em "Tomar Dose" para resetar o temporizador automaticamente para o horário atual ou em "Remover" para excluir o item da dashboard. O projeto foi estruturado de forma integrada para dispositivos móveis e desktop, listando no rodapé institucional os integrantes do grupo: Gabriel dos Santos, Daniel Santos e Matheus Teixeira.
 
 ---
 
